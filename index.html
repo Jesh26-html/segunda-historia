@@ -1,131 +1,316 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Segunda História</title>
 
-<style>
-body{
-    margin:0;
-    font-family:Georgia, serif;
-    background:#F8F3ED;
-    color:#5A4335;
-}
+<title>Segunda História | Brechó</title>
 
-header{
-    background:#9CAF88;
-    color:white;
-    text-align:center;
-    padding:50px 20px;
-}
+<link rel="stylesheet" href="style.css">
 
-header h1{
-    font-size:55px;
-    margin:0;
-}
-
-header p{
-    font-size:22px;
-}
-
-section{
-    padding:50px 20px;
-    text-align:center;
-}
-
-.botao{
-    background:#9CAF88;
-    color:white;
-    padding:15px 35px;
-    border-radius:30px;
-    text-decoration:none;
-    font-size:20px;
-}
-
-.produtos{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    flex-wrap:wrap;
-    margin-top:40px;
-}
-
-.card{
-    width:250px;
-    background:white;
-    border-radius:20px;
-    padding:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-.card img{
-    width:100%;
-    border-radius:15px;
-}
-
-footer{
-    background:#5A4335;
-    color:white;
-    text-align:center;
-    padding:25px;
-    margin-top:50px;
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 </head>
 
+
 <body>
 
+
 <header>
+
+<div class="logo">
 <h1>Segunda História</h1>
-<p>Cada peça, um novo capítulo.</p>
+<p>Moda sustentável com novas histórias ♻️</p>
+</div>
+
+
+<div class="acoes">
+
+<button onclick="abrirFavoritos()">
+❤️ Favoritos
+</button>
+
+<button onclick="abrirCarrinho()">
+🛒 Carrinho
+<span id="contador">0</span>
+</button>
+
+</div>
+
+
 </header>
 
-<section>
 
-<h2>Bem-vindo ao nosso brechó</h2>
+
+<section class="banner">
+
+<div>
+
+<h2>
+Peças únicas esperando por você
+</h2>
 
 <p>
-Peças únicas, escolhidas com carinho para ganhar uma nova história.
+Garimpos especiais, preços acessíveis e moda consciente.
 </p>
 
-<br>
-
-<a class="botao" href="#">Explorar os Garimpos</a>
-
-<div class="produtos">
-
-<div class="card">
-<img src="https://picsum.photos/300/400?1">
-<h3>Capítulo 001</h3>
-<p>Vestido Vintage</p>
-<strong>R$69,90</strong>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/300/400?2">
-<h3>Capítulo 002</h3>
-<p>Jaqueta Jeans</p>
-<strong>R$89,90</strong>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/300/400?3">
-<h3>Capítulo 003</h3>
-<p>Blazer Retrô</p>
-<strong>R$79,90</strong>
-</div>
 
 </div>
 
 </section>
 
+
+
+<section class="filtros">
+
+
+<input 
+type="text" 
+id="busca"
+placeholder="🔎 Procurar peça..."
+onkeyup="filtrarProdutos()"
+>
+
+
+
+<select id="categoria" onchange="filtrarProdutos()">
+
+<option value="">
+Todas categorias
+</option>
+
+<option>
+Vestidos
+</option>
+
+<option>
+Blusas
+</option>
+
+<option>
+Calças
+</option>
+
+<option>
+Casacos
+</option>
+
+</select>
+
+
+
+<select id="tamanho" onchange="filtrarProdutos()">
+
+<option value="">
+Todos tamanhos
+</option>
+
+<option>
+PP
+</option>
+
+<option>
+P
+</option>
+
+<option>
+M
+</option>
+
+<option>
+G
+</option>
+
+<option>
+GG
+</option>
+
+
+</select>
+
+
+</section>
+
+
+
+
+<section>
+
+<h2 class="titulo">
+Nossas peças
+</h2>
+
+
+<div id="produtos" class="produtos">
+
+<!-- Produtos aparecem automaticamente aqui -->
+
+</div>
+
+<div id="controleAdmin" class="produtos"></div>
+
+</section>
+
+
+
+
+
+<!-- ÁREA DE CADASTRO -->
+
+
+<section class="cadastro" id="areaCadastro">
+
+
+<h2>
+Cadastrar nova peça
+</h2>
+
+
+<input id="nomeProduto" placeholder="Nome da peça">
+
+
+<input id="imagemProduto" placeholder="Imagem (ex: roupa4.jpg)">
+
+
+
+<input id="precoProduto" placeholder="Preço">
+
+
+<select id="categoriaProduto">
+
+<option>
+Vestidos
+</option>
+
+<option>
+Blusas
+</option>
+
+<option>
+Calças
+</option>
+
+<option>
+Casacos
+</option>
+
+
+</select>
+
+
+
+<select id="tamanhoProduto">
+
+<option>
+PP
+</option>
+
+<option>
+P
+</option>
+
+<option>
+M
+</option>
+
+<option>
+G
+</option>
+
+<option>
+GG
+</option>
+
+</select>
+
+
+
+<button onclick="cadastrarProduto()">
+Adicionar peça
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+<div id="modalCarrinho" class="modal">
+
+<div class="conteudo">
+
+<h2>
+🛒 Meu Carrinho
+</h2>
+
+
+<div id="listaCarrinho"></div>
+
+
+<button onclick="finalizarCompra()">
+Comprar pelo WhatsApp
+</button>
+
+
+<button onclick="fecharModal()">
+Fechar
+</button>
+
+
+</div>
+
+</div>
+
+<button class="admin-btn" onclick="abrirAdmin()">
+🔐 Área da loja
+</button>
+
+
+<div id="adminModal" class="modal">
+
+<div class="conteudo">
+
+<h2>
+Área administrativa
+</h2>
+
+
+<input 
+type="password"
+id="senhaAdmin"
+placeholder="Digite a senha"
+>
+
+
+<button onclick="entrarAdmin()">
+Entrar
+</button>
+
+
+<button onclick="fecharAdmin()">
+Fechar
+</button>
+
+
+</div>
+
+</div>
+
+
 <footer>
 
-© Segunda História • 2026
+Segunda História © 2026
 
 </footer>
+
+<script src="./dados/produtos.js"></script>
+
+<script src="./script.js"></script>
 
 </body>
 
